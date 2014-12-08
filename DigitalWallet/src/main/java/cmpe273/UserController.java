@@ -55,10 +55,10 @@ public class UserController {
 		// EtcdClient client = new
 		// EtcdClient(URI.create("http://127.0.0.1:4001/"));
 		EtcdClient client = new EtcdClient(URI.create("http://0.0.0.0:4001/"));
-		EtcdResult result = client.get("mykey");
+		EtcdResult result = client.get("/008872903/counter");
 		Integer foo = Integer.parseInt(result.node.value);
 		foo = foo.intValue() + 1;
-		client.set("mykey", foo.toString());
+		client.set("/008872903/counter", foo.toString());
 		int x = foo.intValue();
 
 		return new ResponseEntity<Integer>(x, HttpStatus.OK);
