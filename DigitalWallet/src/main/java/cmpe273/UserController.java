@@ -52,7 +52,8 @@ public class UserController {
 	@RequestMapping(value = "/api/v1/counter", method = RequestMethod.GET)
 	public ResponseEntity<Integer> incrementCounter()
 			throws EtcdClientException {
-		EtcdClient client = new EtcdClient(URI.create("http://127.0.0.1:4001/"));
+		EtcdClient client = new EtcdClient(
+				URI.create("http://54.67.7.157:4001/"));
 		// EtcdClient client = new
 		// EtcdClient(URI.create("http://0.0.0.0:4001/"));
 		EtcdResult result = client.get("/008872903/counter");
@@ -60,8 +61,15 @@ public class UserController {
 		foo = foo.intValue() + 1;
 		client.set("/008872903/counter", foo.toString());
 		int x = foo.intValue();
-
 		return new ResponseEntity<Integer>(x, HttpStatus.OK);
+	}
+
+	// ELB Health GET
+
+	@RequestMapping(value = "/api/v1/elbhealthcheck", method = RequestMethod.GET)
+	public ResponseEntity<Integer> checkELBHealth() {
+
+		return new ResponseEntity<Integer>(HttpStatus.OK);
 	}
 
 	// create user using POST
@@ -318,7 +326,7 @@ public class UserController {
 		 * restTemplate.getForObject(
 		 * "http://www.routingnumbers.info/api/data.json?rn=121000358",
 		 * Customer.class);
-		 *
+		 * 
 		 * System.out.println("Customer Name: " + customer.getCustomer_name());
 		 */
 
