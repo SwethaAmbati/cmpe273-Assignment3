@@ -52,9 +52,9 @@ public class UserController {
 	@RequestMapping(value = "/api/v1/counter", method = RequestMethod.GET)
 	public ResponseEntity<Integer> incrementCounter()
 			throws EtcdClientException {
+		EtcdClient client = new EtcdClient(URI.create("http://127.0.0.1:4001/"));
 		// EtcdClient client = new
-		// EtcdClient(URI.create("http://127.0.0.1:4001/"));
-		EtcdClient client = new EtcdClient(URI.create("http://54.67.7.157:4001/"));
+		// EtcdClient(URI.create("http://0.0.0.0:4001/"));
 		EtcdResult result = client.get("/008872903/counter");
 		Integer foo = Integer.parseInt(result.node.value);
 		foo = foo.intValue() + 1;
